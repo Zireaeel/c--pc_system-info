@@ -53,7 +53,7 @@ namespace ComputerSystemInfo
 
         static void GetMemoryInfo()
         {
-            Console.WriteLine("Memory Information:");
+            Console.WriteLine("Bellek Bilgisi:");
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
             {
                 foreach (ManagementObject os in searcher.Get())
