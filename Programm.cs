@@ -53,17 +53,20 @@ namespace ComputerSystemInfo
 
         static void GetMemoryInfo()
         {
-            Console.WriteLine("Bellek Bilgisi:");
+            Console.WriteLine("Memory Information:");
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
             {
                 foreach (ManagementObject os in searcher.Get())
                 {
-                    Console.WriteLine("Total Visible Memory: " + os["TotalVisibleMemorySize"]);
-                    Console.WriteLine("Free Physical Memory: " + os["FreePhysicalMemory"]);
+                    ulong totalMemory = (ulong)os["TotalVisibleMemorySize"];
+                    ulong freeMemory = (ulong)os["FreePhysicalMemory"];
+                    Console.WriteLine("Total Visible Memory: " + (totalMemory / 1024) + " MB");
+                    Console.WriteLine("Free Physical Memory: " + (freeMemory / 1024) + " MB");
                 }
             }
             Console.WriteLine();
         }
+
 
         static void GetDiskInfo()
         {
